@@ -41,7 +41,8 @@ public class DobbeltLenketListe<T> implements Liste<T> {
     }
 
     public DobbeltLenketListe(T[] a) {
-        throw new UnsupportedOperationException();
+        if(a == null){ throw new NullPointerException("Tabell a er null!"); //feilmedling sendes om tabellen er null
+        }
     }
 
     public Liste<T> subliste(int fra, int til) {
@@ -50,12 +51,17 @@ public class DobbeltLenketListe<T> implements Liste<T> {
 
     @Override
     public int antall() {
-        throw new UnsupportedOperationException();
+        return antall;
     }
 
     @Override
     public boolean tom() {
-        throw new UnsupportedOperationException();
+        if(antall > 0){
+            return false;
+        }
+        else {
+            return true;
+        }
     }
 
     @Override

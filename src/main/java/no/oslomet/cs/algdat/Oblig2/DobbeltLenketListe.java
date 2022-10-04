@@ -89,6 +89,24 @@ public class DobbeltLenketListe<T> implements Liste<T> {
             return b;
         }
 
+        private Node<T> finnNode(int indeks){
+
+            Node<T> p = (indeks < antall/2) ? hode : hale; //Index to the left of the middle ? Yes, start at head : No, start at tail.
+
+            if (p == hode) {    // If we start at head, move to the right until we reach our index
+                for (int i = 0; i < indeks; i++) p = p.neste;
+                return p;
+            } else {    //Otherwise, move to the left until we reach our index.
+                for (int i = antall-1; i > indeks; i--) p = p.forrige;
+                return p;
+            }
+
+
+
+
+        }
+
+
     public Liste<T> subliste(int fra, int til) {
         throw new UnsupportedOperationException();
     }

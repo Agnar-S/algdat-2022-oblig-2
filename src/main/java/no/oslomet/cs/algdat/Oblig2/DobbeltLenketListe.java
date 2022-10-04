@@ -103,9 +103,22 @@ public class DobbeltLenketListe<T> implements Liste<T> {
             }
         }
 
+        private void fratilKontroll(int antall, int fra, int til) { //Help method to check that the interval is correct
+            if (fra < 0) {
+                throw new IndexOutOfBoundsException("Fra (" + fra + ") er negativ!" ); //Fra can't be negative
+            }
+            if (til > antall) {
+                throw new IndexOutOfBoundsException("Til (" + til + ")er for stor!"); //Til can't exceed the length
+            }
+            if (fra > til) {
+                throw new IndexOutOfBoundsException("Fra (" + fra + ") er større enn til (" + til + ")!"); //And fra must be smaller than til
+            }
+        }
+
 
     public Liste<T> subliste(int fra, int til) {
-        throw new UnsupportedOperationException();
+
+
     }
 
     @Override

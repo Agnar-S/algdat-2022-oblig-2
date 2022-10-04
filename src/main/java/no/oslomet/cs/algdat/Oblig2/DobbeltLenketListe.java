@@ -6,6 +6,7 @@ package no.oslomet.cs.algdat.Oblig2;
 
 import java.util.Comparator;
 import java.util.Iterator;
+import java.util.Objects;
 
 
 public class DobbeltLenketListe<T> implements Liste<T> {
@@ -89,8 +90,46 @@ public class DobbeltLenketListe<T> implements Liste<T> {
             return b;
         }
 
+        private Node<T> finnNode(int indeks){
+
+            Node<T> p = (indeks < antall/2) ? hode : hale; // Index to the left of the middle ? Yes, start at head : No, start at tail.
+
+            if (p == hode) {    // If we start at head, move to the right until we reach our index
+                for (int i = 0; i < indeks; i++) p = p.neste;
+                return p;  //Return the node in the index
+            } else {    // Otherwise, move to the left until we reach our index.
+                for (int i = antall-1; i > indeks; i--) p = p.forrige;
+                return p; //Return the node in the index
+            }
+        }
+
+        private void fratilKontroll(int antall, int fra, int til) { //Help method to check that the interval is correct
+            if (fra < 0) {
+                throw new IndexOutOfBoundsException("Fra (" + fra + ") er negativ!" ); //Fra can't be negative
+            }
+            if (til > antall) {
+                throw new IndexOutOfBoundsException("Til (" + til + ")er for stor!"); //Til can't exceed the length
+            }
+            if (fra > til) {
+                throw new IndexOutOfBoundsException("Fra (" + fra + ") er større enn til (" + til + ")!"); //And fra must be smaller than til
+            }
+        }
+
+
     public Liste<T> subliste(int fra, int til) {
-        throw new UnsupportedOperationException();
+
+        fratilKontroll(antall, fra, til); //Checking that the interval is legal
+
+        if (fra == til) {  //If the interval is empty, return an empty list.
+            return new DobbeltLenketListe<>();
+        }
+
+        DobbeltLenketListe<T> sublist = new DobbeltLenketListe<>();
+
+        //Probably use method not implemented yet leggInn() to fill the sublist.
+
+        return sublist;
+
     }
 
     @Override
@@ -129,7 +168,8 @@ public class DobbeltLenketListe<T> implements Liste<T> {
 
     @Override
     public T hent(int indeks) {
-        throw new UnsupportedOperationException();
+        indeksKontroll(indeks, false); // Throws an exception if the index is out of bounds.
+        return finnNode(indeks).verdi; // Returns value of the node at given index using our help method.
     }
 
     @Override
@@ -149,7 +189,17 @@ public class DobbeltLenketListe<T> implements Liste<T> {
 
     @Override
     public T oppdater(int indeks, T nyverdi) {
-        throw new UnsupportedOperationException();
+
+        Objects.requireNonNull(nyverdi);
+
+        indeksKontroll(indeks,false); // Throws an exception if index is out of bounds
+
+        Node<T> p = finnNode(indeks); // We find the node we are going to replace the value of
+        T oldValue = p.verdi; // We store the value of the node
+
+        p.verdi = nyverdi; // We replace the value of the node with the new value
+        endringer++; //We increment the number of changes.
+        return oldValue; // Finally we return the old value.
     }
 
     @Override
@@ -159,7 +209,33 @@ public class DobbeltLenketListe<T> implements Liste<T> {
 
     @Override
     public T fjern(int indeks) {
-        throw new UnsupportedOperationException();
+        indeksKontroll(indeks, false);
+        T temp;
+
+        if (antall == 0){   //When dealing with an empty list
+            throw new NullPointerException("Empty list");
+        }
+
+        if (indeks == 0){   //When dealing with the head.
+            temp = hode.verdi;      //Store head into temporary variable
+            hode = hode.neste;      //Replace head value with next value
+            if  (antall == 1) {     //If there is only one value, the tail becomes null.
+                hale = null;
+            }
+        }
+        else {
+            Node<T> p = finnNode(indeks); //The node we will remove
+            temp = p.verdi;     //We save its value
+            Node<T> o = p.forrige; //The previous node to the one to be removed
+
+            if  (p == hale) { //If our node was the last node, we set the previous node as the tail
+                hale = o;
+            }
+            o.neste = p.neste; //O skips over P
+        }
+        antall--; //Reduce the amount in the list.
+        return temp;
+
     }
 
     @Override

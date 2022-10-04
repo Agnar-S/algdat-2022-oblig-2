@@ -204,7 +204,39 @@ public class DobbeltLenketListe<T> implements Liste<T> {
 
     @Override
     public boolean fjern(T verdi) {
-        throw new UnsupportedOperationException();
+
+        if(verdi == null) { return false;}                  //returnerer false om verdi er null
+        Node<T> forste = hode;
+
+        int i = 1;                                          //siden hode er satt på forste plass altså 0. posisjon
+        while(!forste.verdi.equals(verdi) && i < antall) { //til forste er ikke lik verdi og i er mindre enn antall så..
+            forste = forste.neste;                         //fortsetter vi på neste
+            i++;
+        }
+
+        if(!forste.verdi.equals(verdi) && i == antall) {  //hvis forste er ikke lik verdi og i er lik antall
+            return false;                                 //returneres false
+        }
+        if(antall == 1){                                  //om antall er lik null både hode og hale nullstilles
+            hode = null;
+            hale = null;
+        }
+        else if(forste.forrige == null) {                 //ellers hvis forrige ledd av forste er null
+            hode.neste.forrige = null;                    //så settes hode neste og forrige lik null
+            hode = hode.neste;                            //og hode får/blir satt til neste verdi
+        }
+        else if(forste.neste == null) {                   //ellers hvis forste.neste er null så..
+            hale.forrige.neste = null;                    //så settes hale forrige og neste lik null
+            hale = hale.forrige;                          //og hale får/blir satt til forrige verdi
+        }
+        else {
+            forste.forrige.neste = forste.neste;
+            forste.neste.forrige = forste.forrige;
+        }
+
+        antall--;
+        endringer++;
+        return true;
     }
 
     @Override
@@ -258,7 +290,7 @@ public class DobbeltLenketListe<T> implements Liste<T> {
     public void nullstill() {
         int antallverdier = antall;              //henter liste sin lengde
         for(int i = 0; i < antallverdier; i++) { //looper
-            fjern(0);                      //kaller fjern
+            fjern(0);                      //kaller fjern og den fjerner t fra beholderen
         }
     }
 

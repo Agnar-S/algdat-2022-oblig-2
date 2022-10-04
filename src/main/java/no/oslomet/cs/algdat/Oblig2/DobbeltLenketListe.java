@@ -254,6 +254,13 @@ public class DobbeltLenketListe<T> implements Liste<T> {
         endringer++;                      //økes for hver
     }*/
 
+    @Override
+    public void nullstill() {
+        int antallverdier = antall;              //henter liste sin lengde
+        for(int i = 0; i < antallverdier; i++) { //looper
+            fjern(0);                      //kaller fjern
+        }
+    }
 
     @Override
     public String toString() {

@@ -30,8 +30,8 @@ sourceSets {
 test {
     	systemProperty "file.encoding", "utf-8"
 	reports {
-        	junitXml.enabled = false
-        	html.enabled = true
+        	junitXml.required = false
+        	html.required = true
 	}
 	useJUnitPlatform()
 	testLogging {

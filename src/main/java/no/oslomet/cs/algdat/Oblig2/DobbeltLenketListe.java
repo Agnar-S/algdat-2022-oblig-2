@@ -6,6 +6,7 @@ package no.oslomet.cs.algdat.Oblig2;
 
 import java.util.Comparator;
 import java.util.Iterator;
+import java.util.Objects;
 
 
 public class DobbeltLenketListe<T> implements Liste<T> {
@@ -91,19 +92,15 @@ public class DobbeltLenketListe<T> implements Liste<T> {
 
         private Node<T> finnNode(int indeks){
 
-            Node<T> p = (indeks < antall/2) ? hode : hale; //Index to the left of the middle ? Yes, start at head : No, start at tail.
+            Node<T> p = (indeks < antall/2) ? hode : hale; // Index to the left of the middle ? Yes, start at head : No, start at tail.
 
             if (p == hode) {    // If we start at head, move to the right until we reach our index
                 for (int i = 0; i < indeks; i++) p = p.neste;
-                return p;
-            } else {    //Otherwise, move to the left until we reach our index.
+                return p;  //Return the node in the index
+            } else {    // Otherwise, move to the left until we reach our index.
                 for (int i = antall-1; i > indeks; i--) p = p.forrige;
-                return p;
+                return p; //Return the node in the index
             }
-
-
-
-
         }
 
 
@@ -147,7 +144,8 @@ public class DobbeltLenketListe<T> implements Liste<T> {
 
     @Override
     public T hent(int indeks) {
-        throw new UnsupportedOperationException();
+        indeksKontroll(indeks, false); // Throws an exception if the index is out of bounds.
+        return finnNode(indeks).verdi; // Returns value of the node at given index using our help method.
     }
 
     @Override
@@ -167,7 +165,17 @@ public class DobbeltLenketListe<T> implements Liste<T> {
 
     @Override
     public T oppdater(int indeks, T nyverdi) {
-        throw new UnsupportedOperationException();
+
+        Objects.requireNonNull(nyverdi);
+
+        indeksKontroll(indeks,false); // Throws an exception if index is out of bounds
+
+        Node<T> p = finnNode(indeks); // We find the node we are going to replace the value of
+        T oldValue = p.verdi; // We store the value of the node
+
+        p.verdi = nyverdi; // We replace the value of the node with the new value
+        endringer++; //We increment the number of changes.
+        return oldValue; // Finally we return the old value.
     }
 
     @Override

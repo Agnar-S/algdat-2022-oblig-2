@@ -118,6 +118,17 @@ public class DobbeltLenketListe<T> implements Liste<T> {
 
     public Liste<T> subliste(int fra, int til) {
 
+        fratilKontroll(antall, fra, til); //Checking that the interval is legal
+
+        if (fra == til) {  //If the interval is empty, return an empty list.
+            return new DobbeltLenketListe<>();
+        }
+
+        DobbeltLenketListe<T> sublist = new DobbeltLenketListe<>();
+
+        //Probably use method not implemented yet leggInn() to fill the sublist.
+
+        return sublist;
 
     }
 
@@ -198,7 +209,33 @@ public class DobbeltLenketListe<T> implements Liste<T> {
 
     @Override
     public T fjern(int indeks) {
-        throw new UnsupportedOperationException();
+        indeksKontroll(indeks, false);
+        T temp;
+
+        if (antall == 0){   //When dealing with an empty list
+            throw new NullPointerException("Empty list");
+        }
+
+        if (indeks == 0){   //When dealing with the head.
+            temp = hode.verdi;      //Store head into temporary variable
+            hode = hode.neste;      //Replace head value with next value
+            if  (antall == 1) {     //If there is only one value, the tail becomes null.
+                hale = null;
+            }
+        }
+        else {
+            Node<T> p = finnNode(indeks); //The node we will remove
+            temp = p.verdi;     //We save its value
+            Node<T> o = p.forrige; //The previous node to the one to be removed
+
+            if  (p == hale) { //If our node was the last node, we set the previous node as the tail
+                hale = o;
+            }
+            o.neste = p.neste; //O skips over P
+        }
+        antall--; //Reduce the amount in the list.
+        return temp;
+
     }
 
     @Override

@@ -5,6 +5,7 @@ package no.oslomet.cs.algdat.Oblig2;
 
 
 import java.util.Comparator;
+import java.util.ConcurrentModificationException;
 import java.util.Iterator;
 import java.util.Objects;
 
@@ -339,7 +340,33 @@ public class DobbeltLenketListe<T> implements Liste<T> {
 
         @Override
         public void remove() {
-            throw new UnsupportedOperationException();
+
+            if (!fjernOK) {  //Hvis det ikke er tillatt å kalle denne metoden, skal det kastes en IllegalStateException.
+                throw new IllegalStateException("Kan ikke fjernes!");
+            }
+            if (iteratorendringer != endringer) {
+                throw new ConcurrentModificationException();
+            }
+
+            fjernOK = false; //Kan ikke kalle remove() på den elementen igjen
+
+            Node<T> f = hode; //Hjelp
+
+            if (denne.forrige == hode){ //Hvis hoden skal fjernes
+                hode = hode.neste;
+            }
+
+            Node<T> q = hode;
+            while(q.neste.neste != denne) {     //Vi flytter q to posisjoner bak fra denne.
+                q = q.neste;
+            }
+            f = q.neste;    //Den neste elementen er den som skal fjernes.
+            q.neste = denne;    //Vi hopper over elementen som skal fjernes.
+
+            f.neste = null; f.verdi = null;
+
+            antall--;
+
         }
 
     } // class DobbeltLenketListeIterator

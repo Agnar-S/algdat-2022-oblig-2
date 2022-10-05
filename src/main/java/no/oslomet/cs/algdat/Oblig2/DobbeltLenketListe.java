@@ -67,54 +67,54 @@ public class DobbeltLenketListe<T> implements Liste<T> {
         hale = forste;
     }
 
-        private T[] nullfjerner (T[] a){
-            int antall_nuller = 0;
-            for (T verdi : a) {
-                if (verdi == null) {                  // Teller hvor maneg nuller det finnes
-                    antall_nuller++;
-                }
-            }
-            if (antall_nuller == 0) {
-                return a;
-            }     //Om det ikke finnes nuller i lista så returneres selve lista
-
-            T[] b = (T[]) new Object[a.length - antall_nuller];     // antall nuller subtraheres fra liste sin lengde
-
-            int j = 0;
-
-            for (int i = 0; i < a.length; i++) { //en for løkke som lopper for å fjerne nuller eller å bare sette tall ved
-                if (a[i] != null) {               // siden av hverandre
-                    b[j] = a[i];
-                    j++;
-                }
-            }
-            return b;
-        }
-
-        private Node<T> finnNode(int indeks){
-
-            Node<T> p = (indeks < antall/2) ? hode : hale; // Index to the left of the middle ? Yes, start at head : No, start at tail.
-
-            if (p == hode) {    // If we start at head, move to the right until we reach our index
-                for (int i = 0; i < indeks; i++) p = p.neste;
-                return p;  //Return the node in the index
-            } else {    // Otherwise, move to the left until we reach our index.
-                for (int i = antall-1; i > indeks; i--) p = p.forrige;
-                return p; //Return the node in the index
+    private T[] nullfjerner(T[] a) {
+        int antall_nuller = 0;
+        for (T verdi : a) {
+            if (verdi == null) {                  // Teller hvor maneg nuller det finnes
+                antall_nuller++;
             }
         }
+        if (antall_nuller == 0) {
+            return a;
+        }     //Om det ikke finnes nuller i lista så returneres selve lista
 
-        private void fratilKontroll(int antall, int fra, int til) { //Help method to check that the interval is correct
-            if (fra < 0) {
-                throw new IndexOutOfBoundsException("Fra (" + fra + ") er negativ!" ); //Fra can't be negative
-            }
-            if (til > antall) {
-                throw new IndexOutOfBoundsException("Til (" + til + ")er for stor!"); //Til can't exceed the length
-            }
-            if (fra > til) {
-                throw new IndexOutOfBoundsException("Fra (" + fra + ") er større enn til (" + til + ")!"); //And fra must be smaller than til
+        T[] b = (T[]) new Object[a.length - antall_nuller];     // antall nuller subtraheres fra liste sin lengde
+
+        int j = 0;
+
+        for (int i = 0; i < a.length; i++) { //en for løkke som lopper for å fjerne nuller eller å bare sette tall ved
+            if (a[i] != null) {               // siden av hverandre
+                b[j] = a[i];
+                j++;
             }
         }
+        return b;
+    }
+
+    private Node<T> finnNode(int indeks) {
+
+        Node<T> p = (indeks < antall / 2) ? hode : hale; // Index to the left of the middle ? Yes, start at head : No, start at tail.
+
+        if (p == hode) {    // If we start at head, move to the right until we reach our index
+            for (int i = 0; i < indeks; i++) p = p.neste;
+            return p;  //Return the node in the index
+        } else {    // Otherwise, move to the left until we reach our index.
+            for (int i = antall - 1; i > indeks; i--) p = p.forrige;
+            return p; //Return the node in the index
+        }
+    }
+
+    private void fratilKontroll(int antall, int fra, int til) { //Help method to check that the interval is correct
+        if (fra < 0) {
+            throw new IndexOutOfBoundsException("Fra (" + fra + ") er negativ!"); //Fra can't be negative
+        }
+        if (til > antall) {
+            throw new IndexOutOfBoundsException("Til (" + til + ")er for stor!"); //Til can't exceed the length
+        }
+        if (fra > til) {
+            throw new IndexOutOfBoundsException("Fra (" + fra + ") er større enn til (" + til + ")!"); //And fra must be smaller than til
+        }
+    }
 
 
     public Liste<T> subliste(int fra, int til) {
@@ -140,10 +140,9 @@ public class DobbeltLenketListe<T> implements Liste<T> {
 
     @Override
     public boolean tom() {
-        if(antall > 0){
+        if (antall > 0) {
             return false;
-        }
-        else {
+        } else {
             return true;
         }
     }
@@ -161,7 +160,7 @@ public class DobbeltLenketListe<T> implements Liste<T> {
     @Override
     public boolean inneholder(T verdi) { //sjekker om verdien finnes
         int indeks = indeksTil(verdi);   //verdien hentes fra indeksTil og settes som indeks
-        if(indeks == -1) {               //om det er -1 så får false
+        if (indeks == -1) {               //om det er -1 så får false
             return false;
         }
         return true;                     //else får vi true
@@ -175,12 +174,12 @@ public class DobbeltLenketListe<T> implements Liste<T> {
 
     @Override
     public int indeksTil(T verdi) {          //sjekker mot en verdi finnes
-        if(antall == 0 || verdi == null) {   // om det ikke finnes eller det null så returneres -1
+        if (antall == 0 || verdi == null) {   // om det ikke finnes eller det null så returneres -1
             return -1;
         }
         Node<T> forste = hode;
-        for(int i = 0; i < antall; i++) {
-            if(forste.verdi.equals(verdi)) { //om verdien finnes når vi looper så returneres det
+        for (int i = 0; i < antall; i++) {
+            if (forste.verdi.equals(verdi)) { //om verdien finnes når vi looper så returneres det
                 return i;
             }
             forste = forste.neste;           // else forsettes vi gjennom hele lista
@@ -193,7 +192,7 @@ public class DobbeltLenketListe<T> implements Liste<T> {
 
         Objects.requireNonNull(nyverdi);
 
-        indeksKontroll(indeks,false); // Throws an exception if index is out of bounds
+        indeksKontroll(indeks, false); // Throws an exception if index is out of bounds
 
         Node<T> p = finnNode(indeks); // We find the node we are going to replace the value of
         T oldValue = p.verdi; // We store the value of the node
@@ -206,31 +205,30 @@ public class DobbeltLenketListe<T> implements Liste<T> {
     @Override
     public boolean fjern(T verdi) {
 
-        if(verdi == null) { return false;}                  //returnerer false om verdi er null
+        if (verdi == null) {
+            return false;
+        }                  //returnerer false om verdi er null
         Node<T> forste = hode;
 
         int i = 1;                                          //siden hode er satt på forste plass altså 0. posisjon
-        while(!forste.verdi.equals(verdi) && i < antall) { //til forste er ikke lik verdi og i er mindre enn antall så..
+        while (!forste.verdi.equals(verdi) && i < antall) { //til forste er ikke lik verdi og i er mindre enn antall så..
             forste = forste.neste;                         //fortsetter vi på neste
             i++;
         }
 
-        if(!forste.verdi.equals(verdi) && i == antall) {  //hvis forste er ikke lik verdi og i er lik antall
+        if (!forste.verdi.equals(verdi) && i == antall) {  //hvis forste er ikke lik verdi og i er lik antall
             return false;                                 //returneres false
         }
-        if(antall == 1){                                  //om antall er lik null både hode og hale nullstilles
+        if (antall == 1) {                                  //om antall er lik null både hode og hale nullstilles
             hode = null;
             hale = null;
-        }
-        else if(forste.forrige == null) {                 //ellers hvis forrige ledd av forste er null
+        } else if (forste.forrige == null) {                 //ellers hvis forrige ledd av forste er null
             hode.neste.forrige = null;                    //så settes hode neste og forrige lik null
             hode = hode.neste;                            //og hode får/blir satt til neste verdi
-        }
-        else if(forste.neste == null) {                   //ellers hvis forste.neste er null så..
+        } else if (forste.neste == null) {                   //ellers hvis forste.neste er null så..
             hale.forrige.neste = null;                    //så settes hale forrige og neste lik null
             hale = hale.forrige;                          //og hale får/blir satt til forrige verdi
-        }
-        else {
+        } else {
             forste.forrige.neste = forste.neste;
             forste.neste.forrige = forste.forrige;
         }
@@ -245,23 +243,22 @@ public class DobbeltLenketListe<T> implements Liste<T> {
         indeksKontroll(indeks, false);
         T temp;
 
-        if (antall == 0){   //When dealing with an empty list
+        if (antall == 0) {   //When dealing with an empty list
             throw new NullPointerException("Empty list");
         }
 
-        if (indeks == 0){   //When dealing with the head.
+        if (indeks == 0) {   //When dealing with the head.
             temp = hode.verdi;      //Store head into temporary variable
             hode = hode.neste;      //Replace head value with next value
-            if  (antall == 1) {     //If there is only one value, the tail becomes null.
+            if (antall == 1) {     //If there is only one value, the tail becomes null.
                 hale = null;
             }
-        }
-        else {
+        } else {
             Node<T> p = finnNode(indeks); //The node we will remove
             temp = p.verdi;     //We save its value
             Node<T> o = p.forrige; //The previous node to the one to be removed
 
-            if  (p == hale) { //If our node was the last node, we set the previous node as the tail
+            if (p == hale) { //If our node was the last node, we set the previous node as the tail
                 hale = o;
             }
             o.neste = p.neste; //O skips over P
@@ -290,7 +287,7 @@ public class DobbeltLenketListe<T> implements Liste<T> {
     @Override
     public void nullstill() {
         int antallverdier = antall;              //henter liste sin lengde
-        for(int i = 0; i < antallverdier; i++) { //looper
+        for (int i = 0; i < antallverdier; i++) { //looper
             fjern(0);                      //kaller fjern og den fjerner t fra beholderen
         }
     }
@@ -350,23 +347,41 @@ public class DobbeltLenketListe<T> implements Liste<T> {
 
             fjernOK = false; //Kan ikke kalle remove() på den elementen igjen
 
+            if (antall == 1) {   //Hvis elementen vi skal fjernes er den eneste, så er både håde og hale null
+                hode = null;
+                hale = null;
+                antall--;
+                endringer++;
+                iteratorendringer++;
+                return;
+            }
+
             Node<T> f = hode; //Hjelp
 
-            if (denne.forrige == hode){ //Hvis hoden skal fjernes
-                hode = hode.neste;
-            }
+            if (denne.forrige == hode) { //Hvis hoden som skal fjernes er den første
+                hode = hode.neste;      //Så blir den andre håden
 
-            Node<T> q = hode;
-            while(q.neste.neste != denne) {     //Vi flytter q to posisjoner bak fra denne.
-                q = q.neste;
-            }
-            f = q.neste;    //Den neste elementen er den som skal fjernes.
-            q.neste = denne;    //Vi hopper over elementen som skal fjernes.
+                if (denne == null) {
+                    hale = null;        //Hvis den var den eneste noden, så er hale null også.
+                }
+            } else {
+                Node<T> q = hode;
+                while (q.neste.neste != denne) {     //Vi flytter q to posisjoner bak fra denne.
+                    q = q.neste;
+                }
+                f = q.neste;    //Den neste elementen er den som skal fjernes.
+                q.neste = denne;    //Vi hopper over elementen som skal fjernes.
 
-            f.neste = null; f.verdi = null;
+                if (denne == null) {
+                    hale = q;   //Hvis elementen vi fjernet var den siste, so er noden q halen nå.
+                }
+            }
+            f.neste = null;
+            f.verdi = null;     //Noden fjernes
 
             antall--;
-
+            endringer++;
+            iteratorendringer++;
         }
 
     } // class DobbeltLenketListeIterator
@@ -376,5 +391,6 @@ public class DobbeltLenketListe<T> implements Liste<T> {
     }
 
 } // class DobbeltLenketListe
+
 
 

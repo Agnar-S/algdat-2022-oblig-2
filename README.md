@@ -8,7 +8,8 @@ Oppgaven er levert av følgende studenter:
 # Arbeidsfordeling 
 
 I oppgaven har vi hatt følgende arbeidsfordeling:
-s362071 Agnar Kåre Hereid Spilde har hatt ansvar for oppgave 2-5-8.
+
+* s362071 Agnar Kåre Hereid Spilde: Oppgave 2, 5, 8.
 
 # Oppgavebeskrivelse
 

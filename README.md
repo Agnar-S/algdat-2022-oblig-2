@@ -33,7 +33,8 @@ listen med utvalgte hode videre mot endenn/hale sp skrives -1 om verdien er .equ
 I oppgave 5 så sjekker metoden leggInn() om indeks er null, om listen er tom og om indeksen er lik som antall.
 Deretter legges den nye verdien på valgt indeks og flytter noden til neste indeks.
 
-I oppgave 7 
+I oppgave 7 har blitt laget en metode som tømmer listen. laget en for løkke som setter antallet som liste lengde og i
+løkken så fjernes den indeksen/verdien som er i loopet.
 
 I oppgave 8 flytter next, noden et hakk frem. Iteratoren lager itaretor objekt og returnerer det.
 Det samme gjelder iterator (indeks), utenom at den starter ved en gitt indeks. 

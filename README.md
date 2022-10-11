@@ -8,13 +8,14 @@ Oppgaven er levert av følgende studenter:
 # Arbeidsfordeling
 
 I oppgaven har vi hatt følgende arbeidsfordeling:
-* Per har hatt hovedansvar for oppgave 1, 3, og 5. 
-* Pedram har hatt hovedansvar for oppgave 1, 4, og 7. 
-* Fatima har hatt hovedansvar for oppgave 7 og 8. 
-* Vi har i fellesskap løst oppgave 10. 
+s362071 Agnar Kåre Hereid Spilde har hatt ansvar for oppgave 2-5-8.
 
 # Oppgavebeskrivelse
 
 I oppgave 1 så gikk vi frem ved å ...
 
-I oppgave 2 så brukte vi en ... til å ...
+I oppgave 2 brukes det StringBuilder for å løse metoden toString(). 
+Dette setter hver node i listen i en streng, og det sjekkes listen ikke er tom.
+Første node peker på hode og går så til neste peker. 
+Deretter brukes det en while-løkke for å ta alle nodene som ikke er null  også legge dem etter hverandre i strengen.
+OmvendtString er strukturert på samme måte utenom at den starter fra halen og går deretter til forrige peker. 

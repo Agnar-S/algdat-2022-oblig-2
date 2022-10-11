@@ -13,13 +13,19 @@ I oppgaven har vi hatt følgende arbeidsfordeling:
 
 # Oppgavebeskrivelse
 
-I oppgave 1 så gikk vi frem ved å ...
+I oppgave 1 så gikk vi frem ved å bare returnere bare antallet siden vi har antall og for boolean tøm trengte vi bare en
+if test som sjekker om at antall er større enn null hvis ja så tydes at det ikke er tøm og da returneres false else er
+tabellen tøm og returneres true. for metoden dobbeltlinket liste(T[] a) så kastes først en nullpointerexc om tabellen er
+null. videre skulle alle null-er blitt fjernet og da laget jeg en hjelpemetode nullfjerner som looper med if og for løkker 
+gjennom verdier og utsetter null-er. videre velger vi hode og hale. gjennom en for løkke settes pekerne.
 
 I oppgave 2 brukes det StringBuilder for å løse metoden toString(). 
 Dette setter hver node i listen i en streng, og det sjekkes listen ikke er tom.
 Første node peker på hode og går så til neste peker. 
 Deretter brukes det en while-løkke for å ta alle nodene som ikke er null  også legge dem etter hverandre i strengen.
 OmvendtString er strukturert på samme måte utenom at den starter fra halen og går deretter til forrige peker. 
+
+I oppgave 4 
 
 
 I oppgave 5 så sjekker metoden leggInn() om indeks er null, om listen er tom og om indeksen er lik som antall.

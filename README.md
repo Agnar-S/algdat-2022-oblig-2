@@ -25,11 +25,15 @@ Første node peker på hode og går så til neste peker.
 Deretter brukes det en while-løkke for å ta alle nodene som ikke er null  også legge dem etter hverandre i strengen.
 OmvendtString er strukturert på samme måte utenom at den starter fra halen og går deretter til forrige peker. 
 
-I oppgave 4 
+I oppgave 4 i den metoden var vi etter å ha en metode der hvor det blir gitt en verdi og da sjekkes det med en if test
+om listen er null eller antallet er lik null og da returneres -1. hvis listen ikke var null så looper vi gjennom
+listen med utvalgte hode videre mot endenn/hale sp skrives -1 om verdien er .equal lik den verdien innom loopen.
 
 
 I oppgave 5 så sjekker metoden leggInn() om indeks er null, om listen er tom og om indeksen er lik som antall.
 Deretter legges den nye verdien på valgt indeks og flytter noden til neste indeks.
+
+I oppgave 7 
 
 I oppgave 8 flytter next, noden et hakk frem. Iteratoren lager itaretor objekt og returnerer det.
 Det samme gjelder iterator (indeks), utenom at den starter ved en gitt indeks. 

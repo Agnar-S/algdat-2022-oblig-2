@@ -4,7 +4,7 @@ Denne oppgaven er en innlevering i Algoritmer og Datastrukturer.
 Oppgaven er levert av følgende studenter:
 * S362071 Agnar Kåre Hereid Spilde 
 * S362046 Pedram Ziaei
-
+  S354528 Alan Blanco Alquézar
 # Arbeidsfordeling
 
 I oppgaven har vi hatt følgende arbeidsfordeling:

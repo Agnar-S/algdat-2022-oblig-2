@@ -6,7 +6,7 @@ Oppgaven er levert av følgende studenter:
 * S362046 Pedram Ziaei
 * S354528 Alan Blanco Alquézar
 # Arbeidsfordeling 
-
+ 
 I oppgaven har vi hatt følgende arbeidsfordeling:
 
 * s362071 Agnar Kåre Hereid Spilde: Oppgave 2, 5, 8.

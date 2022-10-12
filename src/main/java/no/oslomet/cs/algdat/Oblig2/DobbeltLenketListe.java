@@ -67,7 +67,7 @@ public class DobbeltLenketListe<T> implements Liste<T> {
     private T[] nullfjerner(T[] a) {
         int antall_nuller = 0;
         for (T verdi : a) {
-            if (verdi == null) {                  // Teller hvor maneg nuller det finnes
+            if (verdi == null) {                  // Teller hvor mange nuller det finnes
                 antall_nuller++;
             }
         }
@@ -286,32 +286,36 @@ public class DobbeltLenketListe<T> implements Liste<T> {
     @Override
     public T fjern(int indeks) {
         indeksKontroll(indeks, false);
-        T temp;
 
-        if (antall == 0) {   //When dealing with an empty list
-            throw new NullPointerException("Empty list");
-        }
+        T fjernverdi;
 
-        if (indeks == 0) {   //When dealing with the head.
-            temp = hode.verdi;      //Store head into temporary variable
-            hode = hode.neste;      //Replace head value with next value
-            if (antall == 1) {     //If there is only one value, the tail becomes null.
-                hale = null;
+        if(indeks == 0) {
+            if (antall == 1){
+                fjernverdi = hode.verdi;
+                hale = hode = null;
+            } else {
+                fjernverdi = hode.verdi;
+                hode = hode.neste;
+                hode.forrige = null;
             }
-        } else {
-            Node<T> p = finnNode(indeks); //The node we will remove
-            temp = p.verdi;     //We save its value
-            Node<T> o = p.forrige; //The previous node to the one to be removed
 
-            if (p == hale) { //If our node was the last node, we set the previous node as the tail
-                hale = o;
-            }
-            o.neste = p.neste; //O skips over P
+        } else if(indeks == antall-1){
+            fjernverdi = hale.verdi;
+            hale = hale.forrige;
+            hale.neste = null;
+        } else{
+            Node<T> p = finnNode(indeks -1);
+            Node<T> q = p.neste;
+            Node<T> r = q.neste;
+            fjernverdi = q.verdi;
+            p.neste = r;
+            r.forrige = p;
         }
-        antall--; //Reduce the amount in the list.
-        return temp;
-
+        antall--;
+        endringer++;
+        return fjernverdi;
     }
+
 
 
     @Override

@@ -9,7 +9,8 @@ Oppgaven er levert av følgende studenter:
  
 I oppgaven har vi hatt følgende arbeidsfordeling:
 
-* s362071 Agnar Kåre Hereid Spilde: Oppgave 2, 5, 8.
+* s362046 Pedram Ziaei: Oppgaver 1,4,7.
+* s362071 Agnar Kåre Hereid Spilde: Oppgave 2, 5, 8, 10.
 * s354528 Alan Blanco ALquézar: Oppgaver 3, 6, 9.
 
 # Oppgavebeskrivelse

@@ -124,7 +124,18 @@ public class DobbeltLenketListe<T> implements Liste<T> {
 
         DobbeltLenketListe<T> sublist = new DobbeltLenketListe<>();
 
-        //Probably use method not implemented yet leggInn() to fill the sublist.
+        Node<T> current = this.hode;    //Starting node
+        int count = 0;
+
+        while (current != null) {   //We run through the orig. list until we run out of values
+            if (count >= fra && count < til) {  //And while count is within the bounds we want, we add the value to the sublist
+                sublist.leggInn(current.verdi);
+            }
+            current = current.neste;
+            count++;
+        }
+
+        sublist.endringer = 0;  //Its a fresh list so no changes
 
         return sublist;
 

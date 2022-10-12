@@ -71,5 +71,5 @@ I oppgave 10 sorteres listen og finner så minste tall og bytter deretter om på
 Benytter så metodene liste.hent og liste.oppdater.
 
 
-Feilmeldinger: 
+Feilmeldinger:
 Opplever at oppgave 6 passerer alle testene noen ganger, og andre ganger ikke. Er også en feil i test 9c.

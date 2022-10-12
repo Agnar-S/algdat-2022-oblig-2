@@ -65,3 +65,7 @@ Så setter vi fjernOK til false, så at remove() kan ikke kalles på det samme s
 Vi sjekker de spesielle tilfellene med if statements, f.e hvis den som skal fjernes er den eneste verdien, eller hvis den er hoden eller halen.
 Da finner vi noden to posisjoner bak fra «denne», og oppdaterer pekerne for å fjerne elementen som finnes bak fra «denne». 
 Da reduseres det antall og både endringer og iteratorendringer økes.
+
+
+I oppgave 10 sorteres listen og finner så minste tall og bytter deretter om på dem.
+Benytter så metodene liste.hent og liste.oppdater.

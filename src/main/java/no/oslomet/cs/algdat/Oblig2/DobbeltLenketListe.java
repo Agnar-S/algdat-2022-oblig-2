@@ -113,7 +113,7 @@ public class DobbeltLenketListe<T> implements Liste<T> {
             throw new IndexOutOfBoundsException("Til (" + til + ")er for stor!"); //Til can't exceed the length
         }
         if (fra > til) {
-            throw new IndexOutOfBoundsException("Fra (" + fra + ") er større enn til (" + til + ")!"); //And fra must be smaller than til
+            throw new IllegalArgumentException("Fra (" + fra + ") er større enn til (" + til + ")!"); //And fra must be smaller than til
         }
     }
 

@@ -48,6 +48,10 @@ public class DobbeltLenketListe<T> implements Liste<T> {
 
         a = nullfjerner(a);       //setter listen a gjennom nullfjerner for at det skal ikke være nuller blant tallene
 
+        if(a.length == 0){
+            return;
+        }
+
         Node<T> forste = new Node<>(a[0]);       //første noden opprettes og settes i a[0]
         antall++;                                //antall økes
         hode = forste;                           //første node blir satt som hode

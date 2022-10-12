@@ -69,3 +69,7 @@ Da reduseres det antall og både endringer og iteratorendringer økes.
 
 I oppgave 10 sorteres listen og finner så minste tall og bytter deretter om på dem.
 Benytter så metodene liste.hent og liste.oppdater.
+
+
+Feilmeldinger: 
+Opplever at oppgave 6 passerer alle testene noen ganger, og andre ganger ikke. Er også en feil i test 9c.

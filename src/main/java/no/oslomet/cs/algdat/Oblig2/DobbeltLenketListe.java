@@ -171,7 +171,7 @@ public class DobbeltLenketListe<T> implements Liste<T> {
     @Override
     public void leggInn(int indeks, T verdi) {
         Objects.requireNonNull(verdi,"Ikke tillatt med null-verdier!");
-
+//
         indeksKontroll(indeks,true);
 
         if (indeks == 0) {
@@ -313,29 +313,26 @@ public class DobbeltLenketListe<T> implements Liste<T> {
 
     }
 
-    /*
-    @Override
-    public void nullstill() {            //har ikke blitt testet
-        Node<T> forste = hode;           //setter første noden som hode
-        while(forste != null) {             //mens det ikke er null så ...
-            Node<T> neste = forste.neste;   //gå vi til neste ledd etter forste
-            forste.verdi = null;            //setter det som er brukt lik null
-            forste.neste = null;
-            forste.forrige = null;
-            forste = neste;                //går videre i listen
-        }
-        hode = hale = null;
-        antall = 0;
-        endringer++;                      //økes for hver
-    }*/
 
     @Override
     public void nullstill() {
-        int antallverdier = antall;              //henter liste sin lengde
-        for (int i = 0; i < antallverdier; i++) { //looper
-            fjern(0);                      //kaller fjern og den fjerner t fra beholderen
+
+        Node<T> p = hode;
+        Node<T> q;
+
+        while (p != null)
+        {
+            q = p.neste;
+            p.neste = null;
+            p.verdi = null;
+            p = q;
         }
+
+        hode = hale = null;
+        antall = 0;
+        endringer++;
     }
+
 
     @Override
         public String toString() {
